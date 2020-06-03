@@ -4,7 +4,7 @@ import { BrowserRouter as Router, Route, Switch, Redirect } from 'react-router-d
 import store from '../store/store';
 import Login from '../components/container/auth/Login';
 import Register from '../components/container/auth/Register';
-import Landing from '../components/container/layout/Landing';
+import LandingPage from '../components/container/layout/LandingPage';
 
 class Views extends Component {
   render() {
@@ -22,7 +22,7 @@ class Views extends Component {
             <Route exact path="/register" component={Register} />
             <Route exact path="/books" render={props =>
               localStorage.getItem('token')? (
-                  <Landing {...props} />
+                  <LandingPage {...props} />
                 ) : (
                   <Redirect to="/" />
                 )
