@@ -9,7 +9,6 @@ function LoginPage({props}) {
                 <form>
                     <div className="form-group">
                         <h2>
-                            {/* <img src={img} width="30%" /> */}
                         </h2>
                         <h3 className="card-title text-center">Read Brilliant Writings</h3>
                         <h5 className="text-center">
