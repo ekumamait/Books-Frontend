@@ -1,0 +1,63 @@
+// .card-body {
+//     width: 300px; 
+//     height: 500px;
+// }
+
+// .mx-auto {
+//     border: none;
+// }
+
+// .modal-content {
+//     border: 0 !important;
+// }
+
+// .container {
+//     width: 800px;
+// }
+
+// .blacklivesmatter {
+//     color: white;
+//     background-color: orange;
+//     padding: 50px;
+// }
+
+// .notallwhitepeople {
+//     width: 100%;
+// }
+
+
+.register-card {
+    border: none !important;
+}
+
+.left {
+    width: 400px;
+}
+
+.right {
+    width: 400px;
+    background-color: #ffc107;
+    color: #fff;
+}
+
+.checker {
+    display: flex;
+    flex-direction: row !important;
+    align-items: center;
+    margin-bottom: 7px;
+}
+
+.intro-body {
+    width: 87%;
+    margin: 70px auto;
+}
+
+@media (min-width: 576px) {
+    .register-modal {
+        max-width: 800px !important;
+    }
+
+    .login-modal {
+        max-width: 400px !important;
+    }
+}

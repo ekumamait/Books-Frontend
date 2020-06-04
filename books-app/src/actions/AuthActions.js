@@ -1,10 +1,13 @@
-import { GET_ERRORS } from '../constants/ActionTypes';
+import { GET_ERRORS, SUCCESS } from '../constants/ActionTypes';
+import dotenv from 'dotenv';
 
+dotenv.config();
 const baseUrl = process.env.baseUrl;
+
 const localStorage = window.localStorage;
 
 export const loginUser = (userData, history) => dispatch => {
-  return fetch(`${baseUrl}/login`, {
+  return fetch(`http://localhost:4000/api/auth/login`, {
     method: 'POST',
     headers: {
       'content-type': 'application/json'
@@ -21,16 +24,22 @@ export const loginUser = (userData, history) => dispatch => {
           payload: data.error
         });
       }
-      if (data.access_token){
-        const token = data.access_token;
+      if (data){
+        console.log(data);
+        const token = data;
         localStorage.setItem('token', token);
         history.push('/books');
+        return dispatch({
+          type: SUCCESS,
+          payload: data
+        });
       }
     });
 };
 
 export const registerUser = (userData, history) => dispatch => {
-  return fetch(`${baseUrl}/signup`, {
+  console.log(userData);
+  return fetch(`http://localhost:4000/api/auth/signup`, {
     method: 'POST',
     headers: {
       'content-type': 'application/json'
@@ -46,8 +55,11 @@ export const registerUser = (userData, history) => dispatch => {
           payload: data.error
         });
       }
-      const token = data.access_token;
-      localStorage.setItem('token', token);
-      history.push('/');
+      if (data) {
+        console.log(data);
+        const token = data.token;
+        localStorage.setItem('token', token);
+        history.push('/');
+      }
     });
 };

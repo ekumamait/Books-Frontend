@@ -1,15 +1,17 @@
 import React, { Component } from 'react';
 import { withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
+import { toast } from 'react-toastify';
 import PropTypes from 'prop-types';
 import LoginPage from '../../presentational/auth/Login';
 import { loginUser } from '../../../actions/AuthActions';
+import { SUCCESS, ERROR, WARNING } from '../../../constants/ActionTypes';
 
 export class Login extends Component {
   constructor() {
     super();
     this.state = {
-      username: '',
+      email: '',
       password: ''
     };
     this.onChange = this.onChange.bind(this);
@@ -23,10 +25,10 @@ export class Login extends Component {
       } else if (nextProps.errors.password) {
         this.setState({ passwordError: nextProps.errors.password });
       } else {
-        this.setState({ notFoundUser: nextProps.errors.error });
+        this.setState({ notFoundUser: nextProps.errors });
       }
     } else {
-      window.localStorage.setItem('token', loginUser.nextProps.user.token);
+      window.localStorage.setItem('token', loginUser.nextProps);
     }
   }
 
@@ -37,15 +39,26 @@ export class Login extends Component {
   onSubmit(e) {
     e.preventDefault();
     const userData = {
-      Username: this.state.username,
-      Password: this.state.password
+      email: this.state.email,
+      password: this.state.password
     };
     this.props.loginUser(userData, this.props.history);
   }
 
+  notify(type, message) {
+    switch (type) {
+      case SUCCESS:
+        toast.info(message);
+        break;
+      case WARNING:
+        toast.warning(message);
+        break;
+    }
+  }
+
   render() {
     return (
-      <LoginPage props={this.props} />
+      <LoginPage props={this.props} submit={this.onSubmit} change={this.onChange} notify={this.notify}/>
     );
   }
 }
