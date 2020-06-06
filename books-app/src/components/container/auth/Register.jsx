@@ -4,13 +4,13 @@ import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { registerUser } from '../../../actions/AuthActions';
 import RegistrationPage from '../../presentational/auth/Register';
-// import img from '../../images/3fs.JPG';
 
 export class Register extends Component {
   constructor() {
     super();
     this.state = {
-      username: '',
+      firstname: '',
+      lastname: '',
       email: '',
       password: ''
     };
@@ -19,6 +19,7 @@ export class Register extends Component {
   }
 
   UNSAFE_componentWillReceiveProps(nextProps) {
+    console.log(nextProps);
     if (nextProps.errors) {
       if (nextProps.errors.email) {
         this.setState({ emailError: nextProps.errors.email });
@@ -28,7 +29,7 @@ export class Register extends Component {
         this.setState({ notFoundUser: nextProps.errors.error });
       }
     } else {
-      window.localStorage.setItem('token', registerUser.nextProps.user.token);
+      // window.localStorage.setItem('token', registerUser.nextProps.user.token);
     }
   }
 
@@ -39,16 +40,19 @@ export class Register extends Component {
   onSubmit(e) {
     e.preventDefault();
     const userData = {
-      user_name: this.state.username,
-      user_email: this.state.email,
-      user_password: this.state.password
+      firstname: this.state.firstname,
+      lastname: this.state.lastname,
+      email: this.state.email,
+      password: this.state.password
     };
+    console.log(userData);
+    
     this.props.registerUser(userData, this.props.history);
   }
 
   render() {
     return (
-      <RegistrationPage props={this.props} />
+      <RegistrationPage props={this.props} submit={this.onSubmit} change={this.onChange}/>
     );
   }
 }
