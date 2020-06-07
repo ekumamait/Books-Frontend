@@ -25,8 +25,8 @@ export const loginUser = (userData, history) => dispatch => {
         });
       }
       if (data){
-        console.log(data);
-        const token = data;
+        const token = data.data;
+        console.log(token);
         localStorage.setItem('token', token);
         history.push('/books');
         return dispatch({

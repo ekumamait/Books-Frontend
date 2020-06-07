@@ -2,8 +2,10 @@ import React, { Component } from 'react';
 import { withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
+import { toast } from 'react-toastify';
 import { registerUser } from '../../../actions/AuthActions';
 import RegistrationPage from '../../presentational/auth/Register';
+import { SUCCESS, ERROR, WARNING } from '../../../constants/ActionTypes';
 
 export class Register extends Component {
   constructor() {
@@ -28,9 +30,7 @@ export class Register extends Component {
       } else {
         this.setState({ notFoundUser: nextProps.errors.error });
       }
-    } else {
-      // window.localStorage.setItem('token', registerUser.nextProps.user.token);
-    }
+    } 
   }
 
   onChange(e) {
@@ -46,8 +46,19 @@ export class Register extends Component {
       password: this.state.password
     };
     console.log(userData);
-    
+    this.notify(SUCCESS, 'Sign Up Successful');
     this.props.registerUser(userData, this.props.history);
+  }
+
+  notify(type, message) {
+    switch (type) {
+      case SUCCESS:
+        toast.info(message);
+        break;
+      case WARNING:
+        toast.warning(message);
+        break;
+    }
   }
 
   render() {

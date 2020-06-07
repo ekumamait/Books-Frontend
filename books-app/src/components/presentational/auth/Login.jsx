@@ -1,5 +1,6 @@
 import React from 'react'
 import { Link } from 'react-router-dom';
+import { ToastContainer, toast } from 'react-toastify';
 import './Register.scss';
 
 function LoginPage({props, submit, change, notify}) {
@@ -14,59 +15,55 @@ function LoginPage({props, submit, change, notify}) {
                 <div className="container">
                 <div className="row">
                 <div className="col-sm left">
-                    <div className="d-flex justify-content-between">
-                        <div className="p-2">
-                            <h3 className="card-title text-center justify-content-center">Welcome Back!</h3>
+                <div className="card register-card mx-auto card-default align-item-center justify-content-center">
+                      <div className="card-body">
+                        <div className="d-flex justify-content-between">
+                            <div className="p-2">
+                                <h3 className="card-title text-center justify-content-center">Welcome Back!</h3>
+                                <small className="text-muted form-text">Login & continue from where you left off.</small> 
+                            </div>
                         </div>
-                        <div className="p-2">
-                            <button type="button" className="close align-text-bottom" data-dismiss="modal" aria-label="Close">
-                                <span aria-hidden="true">&times;</span>
-                            </button>
-                        </div>
-                    </div>
-                    {/* <p>Login to continue from where you left off.</p> */}
-                    <div className="container-sm">
-                    <form noValidate onSubmit={submit}>
-                            <div>
-                                <div className="form-group ">
-                                    <label >Email Address</label>
-                                    <input 
-                                        type="email" 
-                                        className="form-control" 
-                                        id="email"
-                                        name="email"
-                                        autoComplete="on"
-                                        aria-describedby="emailHelp"
-                                        placeholder="Enter Email"
-                                        onChange={change}
-                                    />
-                                </div>
+                        <div className="container-sm">
+                        <form noValidate onSubmit={submit}>
+                                <div>
+                                    <div className="form-group ">
+                                        <label >Email Address</label>
+                                        <input 
+                                            type="email" 
+                                            className="form-control" 
+                                            id="email"
+                                            name="email"
+                                            autoComplete="on"
+                                            aria-describedby="emailHelp"
+                                            placeholder=""
+                                            onChange={change}
+                                        />
+                                    </div>
 
-                                <div className="form-group">
-                                    <label>Password</label>
-                                    <input 
-                                    type="password" 
-                                    className="form-control" 
-                                    id="password"
-                                    name="password"
-                                    autoComplete="on"
-                                    placeholder="Enter password"
-                                    onChange={change}
-                                    />
+                                    <div className="form-group">
+                                        <label>Password</label>
+                                        <input 
+                                        type="password" 
+                                        className="form-control" 
+                                        id="password"
+                                        name="password"
+                                        autoComplete="on"
+                                        placeholder=""
+                                        onChange={change}
+                                        />
+                                    </div>
                                 </div>
-                            </div>
-                            <h6 className="text-sm-left">
-                                Have no account? sign up <Link to="/register">here</Link>
-                            </h6>
-                            <div className="d-flex justify-content-end">
-                                <div className="p-2">
-                                    <button type="button" className="btn btn-secondary" data-dismiss="modal">Close</button>
+                                <small className="text-muted form-text">
+                                    Have no account? sign up <Link to="/register">here</Link>
+                                </small>
+                                <div className="d-flex justify-content-end">
+                                    <div className="p-2">
+                                        <button type="submit" id="signinButton" name="submit" value="Sign In" className="btn btn-warning font-weight-bold">LOGIN</button>
+                                    </div>
                                 </div>
-                                <div className="p-2">
-                                    <button type="submit" id="signinButton" name="submit" value="Sign In" className="btn btn-warning font-weight-bold">LOGIN</button>
-                                </div>
-                            </div>
-                        </form>
+                            </form>
+                        </div>
+                        </div>
                     </div>
                     </div>
                     </div>
@@ -74,6 +71,7 @@ function LoginPage({props, submit, change, notify}) {
                 </div>
             </div>
         </div>
+        <ToastContainer />
     </div>
     )
 }

@@ -16,6 +16,7 @@ export class Login extends Component {
     };
     this.onChange = this.onChange.bind(this);
     this.onSubmit = this.onSubmit.bind(this);
+    this.notify = this.notify.bind(this);
   }
 
   UNSAFE_componentWillReceiveProps(nextProps) {
@@ -28,7 +29,7 @@ export class Login extends Component {
         this.setState({ notFoundUser: nextProps.errors });
       }
     } else {
-      window.localStorage.setItem('token', loginUser.nextProps);
+      localStorage.setItem('token', loginUser.nextProps);
     }
   }
 
@@ -42,10 +43,13 @@ export class Login extends Component {
       email: this.state.email,
       password: this.state.password
     };
+
+    this.notify(SUCCESS, 'Log in Successful');
     this.props.loginUser(userData, this.props.history);
   }
 
   notify(type, message) {
+    console.log(type);
     switch (type) {
       case SUCCESS:
         toast.info(message);

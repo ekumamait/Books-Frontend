@@ -6,37 +6,20 @@ import HomePage from '../../presentational/layout/HomePage';
 class Home extends Component {
     constructor(props) {
         super(props);
-        // this.handleClick = this.handleClick.bind(this);
     }
 
-    // handleClick(event) {        
-    //     
-    // }
-
-    // componentDidMount() {
-    //    
-    // }
-
     render() {
-        const clickEvent = {
-            handleClick: this.handleClick,
-        }
         return (
-            <HomePage props={this.props} clickEvent={clickEvent} />
+            <HomePage props={this.props} />
         );
     }
 }
 
-HomePage.propTypes = {
-
-};
-
 const mapStateToProps = state => {
     return {
-    //   errors: state.errors
+      errors: state.errors
     };
   };
-
 
 export default connect(
     mapStateToProps,

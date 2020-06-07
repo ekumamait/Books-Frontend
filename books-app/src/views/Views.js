@@ -14,7 +14,7 @@ class Views extends Component {
         <Router>
           <Switch>
           <Route exact path="/home" component={Home} />
-            <Route exact path="/" render={props =>
+            <Route exact path="/home" render={props =>
               localStorage.getItem('token')? (
                 <Redirect to="/books" />
                 ) : (
@@ -22,7 +22,7 @@ class Views extends Component {
                 )
               } />
             <Route exact path="/register" component={Register} />
-            <Route exact path="/books" render={props =>
+              <Route exact path="/books" render={props =>
               localStorage.getItem('token')? (
                   <Landing {...props} />
                 ) : (

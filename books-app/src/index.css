@@ -11,3 +11,16 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+
+.custom-elevation-z2 {
+  transition: .4s;
+  border: none !important;
+}
+
+.custom-elevation-z2:hover {
+  box-shadow: 0px 2px 10px rgba(0, 0, 0, 0.1) !important;
+  border-radius: 7px !important;
+  transition: .4s;
+  border: none !important;
+
+}

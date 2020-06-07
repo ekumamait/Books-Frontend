@@ -5,6 +5,7 @@ import PropTypes from 'prop-types';
 import { toast } from 'react-toastify';
 import { SUCCESS, ERROR, WARNING } from '../../../constants/ActionTypes';
 import NewBook from '../../presentational/books/NewBook';
+import { loginUser } from '../../../actions/AuthActions';
 
 export class Books extends React.Component {
   constructor(props) {
@@ -21,19 +22,20 @@ export class Books extends React.Component {
     this.notify = this.notify.bind(this);
   }
 
+
   componentWillReceiveProps(newProps) {
     if (newProps.errors) {
       this.setState({ errors: newProps.errors });
     }
     if (newProps.success) {
       this.notify(SUCCESS, 'Article saved');
-      //redirect
       let { history } = this.props;
       history.push('/articles');
     }
   }
 
   handleChange(e) {
+    localStorage.getItem('token');
     this.setState({ [e.target.name]: e.target.value });
   }
 
@@ -48,7 +50,7 @@ export class Books extends React.Component {
       description: this.state.description,
       body: this.state.body
     };
-    this.props.addArticle(payload);
+    this.props.addBook(payload);
   }
 
   notify(type, message) {
